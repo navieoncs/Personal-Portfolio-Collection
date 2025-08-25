@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navida Ninduwara - Socials</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --accent-color: #8c43ff;
+            --secondary-color: #2d2d2d;
+            --hover-color: #a566ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid var(--accent-color);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(140, 67, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(140, 67, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(140, 67, 255, 0); }
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .tagline {
+            color: #aaa;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .bio {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s forwards;
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bio p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .social-btn:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-btn i {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover::before {
+            transform: scale(1);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .profile h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="profile">
+            <div class="profile-pic">
+                <img src="Main Profile Pic.jpg" alt="Your Profile Picture">
+            </div>
+            <h1>Navida Ninduwara</h1>
+            <div class="tagline">Entrepreneur | Content Creator | Designer</div>
+        </div>
+        
+        <div class="bio">
+            <p>I’m a web designer and SEO consultant focused on creating visually appealing, high-performing websites. With a blend of creativity and technical expertise, I ensure that every site is both user-friendly and optimized for search rankings. I also write and develop blog content, crafting clear, engaging pieces that provide value. As a ghostwriter, I tailor content to match different brand voices, from blogs to marketing copy.</p>
+            <p>My passion for software development keeps me exploring new technologies to build innovative digital solutions. Staying up-to-date with industry trends, I aim to create efficient tools and strategies that drive results. With expertise in design, SEO, content creation, and development, I’m committed to delivering impactful, high-quality projects.</p>
+        </div>
+        
+        <div class="social-links" id="socialLinks">
+            <a href="https://www.instagram.com/navieoncs" target="_blank" class="social-btn" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/navieoncs" target="_blank" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/navieoncs" class="social-btn" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/navieoncs" class="social-btn" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.youtube.com/@navieoncs" class="social-btn" target="_blank" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="mailto:navidaninduwaraofficial@gmail.com" class="social-btn" title="Email">
+                <i class="far fa-envelope"></i>
+            </a>
+        </div>
+        
+        <footer>
+            &copy; <span id="year"></span> Navida Ninduwara. All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+  
+        const socialBtns = document.querySelectorAll('.social-btn');
+        socialBtns.forEach((btn, index) => {
+            btn.style.animation = `slideUp 0.5s forwards ${0.5 + index * 0.1}s`;
+        });
+        
+   
+        class Particle {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = `rgba(140, 67, 255, ${Math.random() * 0.5 + 0.1})`;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x < 0 || this.x > window.innerWidth) {
+                    this.speedX = -this.speedX;
+                }
+                
+                if (this.y < 0 || this.y > window.innerHeight) {
+                    this.speedY = -this.speedY;
+                }
+            }
+            
+            draw(ctx) {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            const canvas = document.createElement('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.getElementById('particles').appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            const particles = [];
+            const particleCount = Math.min(100, window.innerWidth / 10);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            function connectParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 200) {
+                            const opacity = 1 - (distance / 200);
+                            ctx.strokeStyle = `rgba(140, 67, 255, ${opacity * 0.2})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw(ctx);
+                }
+                
+                connectParticles();
+                requestAnimationFrame(animate);
+            }
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            
+            animate();
+        }
+        
+
+        document.addEventListener('DOMContentLoaded', initParticles);
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaV1EonCS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --accent: #8a2be2;
+            --text: #e0e0e0;
+            --text-secondary: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .profile-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent), #4a0080);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img-placeholder span {
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #8a2be2, #4a00e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 0.4s;
+        }
+
+        .title {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 0.6s;
+        }
+
+
+        .about {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 0.8s;
+        }
+
+        .about h2 {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease 1s;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link.twitter:hover {
+            background-color: rgba(29, 161, 242, 0.2);
+            color: #1da1f2;
+        }
+
+        .social-link.instagram:hover {
+            background-color: rgba(193, 53, 132, 0.2);
+            color: #c13584;
+        }
+
+        .social-link.linkedin:hover {
+            background-color: rgba(0, 119, 181, 0.2);
+            color: #0077b5;
+        }
+
+        .social-link.github:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.6s ease 1.2s;
+        }
+
+
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 20px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+            }
+            
+            .social-link {
+                width: 100%;
+            }
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: twinkle ease infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-img">
+                    <img src="Main Profile Pic.jpg" alt="Your Name">
+                </div>
+                <h1 class="name">Navida Ninduwara</h1>
+                <p class="title">Entrepreneur | Content Creator | Designer</p>
+            </div>
+            
+            <div class="about">
+                <h2>About Me</h2>
+                <p>I'm a web designer and SEO consultant focused on creating visually appealing, high-performing websites. With a blend of creativity and technical expertise, I ensure that every site is both user-friendly and optimized for search rankings. I also write and develop blog content, crafting clear, engaging pieces that provide value. As a ghostwriter, I tailor content to match different brand voices, from blogs to marketing copy.</p>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://x.com/navieoncs" target="_blank" class="social-link twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://www.instagram.com/navieoncs" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.linkedin.com/in/navieoncs" target="_blank" class="social-link linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/navieoncs" target="_blank" class="social-link github">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+            
+            <footer>
+                <p>&copy; 2025 Navida Ninduwara. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            setTimeout(() => {
+
+                document.body.style.opacity = '1';
+                
+
+                const profileCard = document.querySelector('.profile-card');
+                profileCard.style.transform = 'translateY(0)';
+                profileCard.style.opacity = '1';
+                
+         
+                document.querySelector('.name').style.opacity = '1';
+                document.querySelector('.name').style.transform = 'translateY(0)';
+                
+                document.querySelector('.title').style.opacity = '1';
+                document.querySelector('.title').style.transform = 'translateY(0)';
+                
+            
+                document.querySelector('.about').style.opacity = '1';
+                document.querySelector('.about').style.transform = 'translateY(0)';
+                
+
+                document.querySelector('.social-links').style.opacity = '1';
+                document.querySelector('.social-links').style.transform = 'translateY(0)';
+                
+
+                document.querySelector('footer').style.opacity = '1';
+            }, 200);
+
+
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.transition = 'all 0.3s ease';
+                });
+            });
+
+
+            const aboutParagraph = document.querySelector('.about p');
+            const originalText = aboutParagraph.textContent;
+            aboutParagraph.textContent = '';
+            
+            setTimeout(() => {
+                let i = 0;
+                const typingEffect = setInterval(() => {
+                    if (i < originalText.length) {
+                        aboutParagraph.textContent += originalText.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingEffect);
+                    }
+                }, 20);
+            }, 1500);
+
+
+            document.addEventListener('mousemove', (e) => {
+                const card = document.querySelector('.profile-card');
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                card.style.transform = `translateY(0) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+
+            document.addEventListener('mouseleave', () => {
+                const card = document.querySelector('.profile-card');
+                card.style.transform = 'translateY(0) rotateY(0) rotateX(0)';
+            });
+        });
+
+
+        const createStars = () => {
+            const container = document.querySelector('.container');
+            const bgElement = document.createElement('div');
+            bgElement.classList.add('animated-bg');
+            
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                bgElement.appendChild(star);
+            }
+            
+            document.body.insertBefore(bgElement, container);
+        };
+
+
+        createStars();
+    </script>
+</body>
+</html>
